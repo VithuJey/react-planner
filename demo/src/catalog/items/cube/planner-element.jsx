@@ -47,7 +47,7 @@ export default {
 
   render2D: (element, layer, scene) => {
     let style = {
-      stroke: !element.selected ? ReactPlannerSharedStyle.LINE_MESH_COLOR.unselected : ReactPlannerSharedStyle.MESH_SELECTED,
+      stroke: !element.selected ? ReactPlannerSharedStyle.MESH_SELECTED : ReactPlannerSharedStyle.MESH_SELECTED,
       strokeWidth: 2,
       fill: element.properties.get('color')
     };

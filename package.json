@@ -6,7 +6,7 @@
   "module": "es/index.js",
   "jsnext:main": "es/index.js",
   "scripts": {
-    "start": "webpack-dev-server --inline --config demo/webpack.config.js --port 9000 --mode development",
+    "start": "webpack-dev-server --inline --config demo/webpack.config.js",
     "build-demo": "webpack --config demo/webpack.config.js --mode production",
     "build-commonjs": "cross-env BABEL_ENV=commonjs babel src --out-dir lib",
     "build-es": "cross-env BABEL_ENV=es babel src --copy-files --out-dir es",
@@ -67,6 +67,7 @@
   "dependencies": {
     "@mapbox/react-range": "0.0.7",
     "area-polygon": "1.0.1",
+    "axios": "^0.21.1",
     "convert-units": "2.3.4",
     "html-webpack-plugin": "3.2.0",
     "immutable": "3.8.2",
@@ -74,11 +75,13 @@
     "immutablepatch": "0.5.0",
     "polylabel": "1.0.2",
     "prop-types": "15.7.2",
+    "query-string": "^6.14.0",
     "react-icons": "3.5.0",
     "react-redux": "5.0.7",
     "react-svg-pan-zoom": "2.18.0",
     "react-tabs": "3.0.0",
     "redux": "4.0.1",
+    "regenerator-runtime": "^0.13.7",
     "shortid": "2.2.14"
   },
   "devDependencies": {
