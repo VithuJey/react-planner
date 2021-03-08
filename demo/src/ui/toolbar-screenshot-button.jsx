@@ -39,11 +39,11 @@ export default function ToolbarScreenshotButton({ mode }, { translator }) {
       let caseId = localStorage.getItem("caseId");
       let token = localStorage.getItem("token");
       let filename = `floor_planner_${caseId}_${Date.now()}.png`;
-      // console.log("response: ", response, caseId, token, filename, UPLOAD_URL);
+      console.log("response: ", response, caseId, token, filename, UPLOAD_URL);
 
       const formData = new FormData();
       formData.append("file", new File([response.data], filename));
-      formData.append("case", caseId);
+      // formData.append("case", caseId);
 
       // axios
       //   .post(UPLOAD_URL, formData, {
@@ -61,11 +61,11 @@ export default function ToolbarScreenshotButton({ mode }, { translator }) {
       // headers.append("Authorization", `Bearer ${token}`);
       // headers.append("Origin", "http://localhost:9000");
 
+      console.log(formData);
+
       axios
         .post(UPLOAD_URL, formData, {
           headers: {
-            "Access-Control-Allow-Origin": "*",
-            Accept: "multipart/form-data",
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
           },
