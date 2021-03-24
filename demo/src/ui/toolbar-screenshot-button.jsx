@@ -30,7 +30,7 @@ const UPLOAD_URL = `${BASE_URL}/core/upload/`;
 export default function ToolbarScreenshotButton({ mode }, { translator }) {
   // save img file
   let imageUpload = (imageUri) => {
-    console.log("HHIH");
+    // console.log("HHIH");
     axios({
       method: "get",
       url: imageUri,
@@ -39,13 +39,13 @@ export default function ToolbarScreenshotButton({ mode }, { translator }) {
       let caseId = localStorage.getItem("caseId");
       let token = localStorage.getItem("token");
       let filename = `floor_planner_${caseId}_${Date.now()}.png`;
-      console.log("response: ", response, caseId, token, filename, UPLOAD_URL);
+      // console.log("response: ", response, caseId, token, filename, UPLOAD_URL);
 
       const formData = new FormData();
       formData.append("file", new File([response.data], filename));
       formData.append("case", caseId);
 
-      console.log(formData);
+      // console.log(formData);
 
       axios
         .post(UPLOAD_URL, formData, {
@@ -55,11 +55,11 @@ export default function ToolbarScreenshotButton({ mode }, { translator }) {
           },
         })
         .then((res) => {
-          console.log("res: ", res);
+          // console.log("res: ", res);
           alert("Met succes opgeslagen!");
         })
         .catch((e) => {
-          console.log("error: ", e);
+          // console.log("error: ", e);
           alert("Opslaan mislukt. Probeer het opnieuw.");
         });
 
