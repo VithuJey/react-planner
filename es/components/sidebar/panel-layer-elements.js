@@ -10,39 +10,52 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Panel from './panel';
-import { MODE_IDLE, MODE_2D_ZOOM_IN, MODE_2D_ZOOM_OUT, MODE_2D_PAN, MODE_3D_VIEW, MODE_3D_FIRST_PERSON, MODE_WAITING_DRAWING_LINE, MODE_DRAWING_LINE, MODE_DRAWING_HOLE, MODE_DRAWING_ITEM, MODE_DRAGGING_LINE, MODE_DRAGGING_VERTEX, MODE_DRAGGING_ITEM, MODE_DRAGGING_HOLE, MODE_FITTING_IMAGE, MODE_UPLOADING_IMAGE, MODE_ROTATING_ITEM } from '../../constants';
-import * as SharedStyle from '../../shared-style';
-import { MdSearch } from 'react-icons/md';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import Panel from "./panel";
+import { MODE_IDLE, MODE_2D_ZOOM_IN, MODE_2D_ZOOM_OUT, MODE_2D_PAN, MODE_3D_VIEW, MODE_3D_FIRST_PERSON, MODE_WAITING_DRAWING_LINE, MODE_DRAWING_LINE, MODE_DRAWING_HOLE, MODE_DRAWING_ITEM, MODE_DRAGGING_LINE, MODE_DRAGGING_VERTEX, MODE_DRAGGING_ITEM, MODE_DRAGGING_HOLE, MODE_FITTING_IMAGE, MODE_UPLOADING_IMAGE, MODE_ROTATING_ITEM } from "../../constants";
+import * as SharedStyle from "../../shared-style";
+import { MdSearch } from "react-icons/md";
 
 var VISIBILITY_MODE = {
-  MODE_IDLE: MODE_IDLE, MODE_2D_ZOOM_IN: MODE_2D_ZOOM_IN, MODE_2D_ZOOM_OUT: MODE_2D_ZOOM_OUT, MODE_2D_PAN: MODE_2D_PAN, MODE_3D_VIEW: MODE_3D_VIEW, MODE_3D_FIRST_PERSON: MODE_3D_FIRST_PERSON,
-  MODE_WAITING_DRAWING_LINE: MODE_WAITING_DRAWING_LINE, MODE_DRAWING_LINE: MODE_DRAWING_LINE, MODE_DRAWING_HOLE: MODE_DRAWING_HOLE, MODE_DRAWING_ITEM: MODE_DRAWING_ITEM, MODE_DRAGGING_LINE: MODE_DRAGGING_LINE,
-  MODE_DRAGGING_VERTEX: MODE_DRAGGING_VERTEX, MODE_DRAGGING_ITEM: MODE_DRAGGING_ITEM, MODE_DRAGGING_HOLE: MODE_DRAGGING_HOLE, MODE_FITTING_IMAGE: MODE_FITTING_IMAGE, MODE_UPLOADING_IMAGE: MODE_UPLOADING_IMAGE,
+  MODE_IDLE: MODE_IDLE,
+  MODE_2D_ZOOM_IN: MODE_2D_ZOOM_IN,
+  MODE_2D_ZOOM_OUT: MODE_2D_ZOOM_OUT,
+  MODE_2D_PAN: MODE_2D_PAN,
+  MODE_3D_VIEW: MODE_3D_VIEW,
+  MODE_3D_FIRST_PERSON: MODE_3D_FIRST_PERSON,
+  MODE_WAITING_DRAWING_LINE: MODE_WAITING_DRAWING_LINE,
+  MODE_DRAWING_LINE: MODE_DRAWING_LINE,
+  MODE_DRAWING_HOLE: MODE_DRAWING_HOLE,
+  MODE_DRAWING_ITEM: MODE_DRAWING_ITEM,
+  MODE_DRAGGING_LINE: MODE_DRAGGING_LINE,
+  MODE_DRAGGING_VERTEX: MODE_DRAGGING_VERTEX,
+  MODE_DRAGGING_ITEM: MODE_DRAGGING_ITEM,
+  MODE_DRAGGING_HOLE: MODE_DRAGGING_HOLE,
+  MODE_FITTING_IMAGE: MODE_FITTING_IMAGE,
+  MODE_UPLOADING_IMAGE: MODE_UPLOADING_IMAGE,
   MODE_ROTATING_ITEM: MODE_ROTATING_ITEM
 };
 
 var contentArea = {
-  height: 'auto',
-  maxHeight: '15em',
-  overflowY: 'auto',
-  padding: '0.25em 1.15em',
-  cursor: 'pointer',
-  marginBottom: '1em',
-  userSelect: 'none'
+  height: "auto",
+  maxHeight: "15em",
+  overflowY: "auto",
+  padding: "0.25em 1.15em",
+  cursor: "pointer",
+  marginBottom: "1em",
+  userSelect: "none"
 };
 
 var elementStyle = {
-  width: 'auto',
-  height: '2.5em',
-  margin: '0.25em 0.25em 0 0',
-  padding: '0.5em',
-  textAlign: 'center',
-  display: 'inline-block',
-  border: '1px solid #CCC',
-  borderRadius: '0.2em'
+  width: "auto",
+  height: "2.5em",
+  margin: "0.25em 0.25em 0 0",
+  padding: "0.5em",
+  textAlign: "center",
+  display: "inline-block",
+  border: "1px solid #CCC",
+  borderRadius: "0.2em"
 };
 
 var elementSelectedStyle = _extends({}, elementStyle, {
@@ -51,13 +64,18 @@ var elementSelectedStyle = _extends({}, elementStyle, {
 });
 
 var categoryDividerStyle = {
-  paddingBottom: '0.5em',
-  borderBottom: '1px solid #888'
+  paddingBottom: "0.5em",
+  borderBottom: "1px solid #888"
 };
 
-var tableSearchStyle = { width: '100%', marginTop: '0.8em' };
-var searchIconStyle = { fontSize: '1.5em' };
-var searchInputStyle = { fontSize: '1em', width: '100%', height: '1em', padding: '1em 0.5em' };
+var tableSearchStyle = { width: "100%", marginTop: "0.8em" };
+var searchIconStyle = { fontSize: "1.5em" };
+var searchInputStyle = {
+  fontSize: "1em",
+  width: "100%",
+  height: "1em",
+  padding: "1em 0.5em"
+};
 
 var PanelLayerElement = function (_Component) {
   _inherits(PanelLayerElement, _Component);
@@ -76,14 +94,14 @@ var PanelLayerElement = function (_Component) {
 
     _this.state = {
       elements: elements,
-      matchString: '',
+      matchString: "",
       matchedElements: elements
     };
     return _this;
   }
 
   _createClass(PanelLayerElement, [{
-    key: 'shouldComponentUpdate',
+    key: "shouldComponentUpdate",
     value: function shouldComponentUpdate(nextProps, nextState) {
       if (this.state.matchString !== nextState.matchString) return true;
 
@@ -95,7 +113,7 @@ var PanelLayerElement = function (_Component) {
       return false;
     }
   }, {
-    key: 'componentWillReceiveProps',
+    key: "componentWillReceiveProps",
     value: function componentWillReceiveProps(nextProps) {
       var layer = nextProps.layers.get(nextProps.selectedLayer);
 
@@ -107,10 +125,10 @@ var PanelLayerElement = function (_Component) {
         items: layer.items
       };
 
-      if (this.state.matchString !== '') {
-        var regexp = new RegExp(this.state.matchString, 'i');
+      if (this.state.matchString !== "") {
+        var regexp = new RegExp(this.state.matchString, "i");
         var filterCb = function filterCb(el) {
-          return regexp.test(el.get('name'));
+          return regexp.test(el.get("name"));
         };
 
         this.setState({
@@ -126,19 +144,19 @@ var PanelLayerElement = function (_Component) {
       }
     }
   }, {
-    key: 'matcharray',
+    key: "matcharray",
     value: function matcharray(text) {
-      if (text === '') {
+      if (text === "") {
         this.setState({
-          matchString: '',
+          matchString: "",
           matchedElements: this.state.elements
         });
         return;
       }
 
-      var regexp = new RegExp(text, 'i');
+      var regexp = new RegExp(text, "i");
       var filterCb = function filterCb(el) {
-        return regexp.test(el.get('name'));
+        return regexp.test(el.get("name"));
       };
 
       this.setState({
@@ -151,7 +169,7 @@ var PanelLayerElement = function (_Component) {
       });
     }
   }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       var _this2 = this;
 
@@ -161,43 +179,49 @@ var PanelLayerElement = function (_Component) {
 
       return React.createElement(
         Panel,
-        { name: this.context.translator.t('Elements on layer {0}', layer.name) },
+        {
+          name: this.context.translator.t("Elements on layer {0}", layer.name)
+        },
         React.createElement(
-          'div',
+          "div",
           { style: contentArea, onWheel: function onWheel(e) {
               return e.stopPropagation();
             } },
           React.createElement(
-            'table',
+            "table",
             { style: tableSearchStyle },
             React.createElement(
-              'tbody',
+              "tbody",
               null,
               React.createElement(
-                'tr',
+                "tr",
                 null,
                 React.createElement(
-                  'td',
+                  "td",
                   null,
                   React.createElement(MdSearch, { style: searchIconStyle })
                 ),
                 React.createElement(
-                  'td',
+                  "td",
                   null,
-                  React.createElement('input', { type: 'text', style: searchInputStyle, onChange: function onChange(e) {
+                  React.createElement("input", {
+                    type: "text",
+                    style: searchInputStyle,
+                    onChange: function onChange(e) {
                       _this2.matcharray(e.target.value);
-                    } })
+                    }
+                  })
                 )
               )
             )
           ),
           this.state.matchedElements.lines.count() ? React.createElement(
-            'div',
+            "div",
             null,
             React.createElement(
-              'p',
+              "p",
               { style: categoryDividerStyle },
-              this.context.translator.t('Lines')
+              this.context.translator.t("Lines")
             ),
             this.state.matchedElements.lines.entrySeq().map(function (_ref) {
               var _ref2 = _slicedToArray(_ref, 2),
@@ -205,25 +229,26 @@ var PanelLayerElement = function (_Component) {
                   line = _ref2[1];
 
               return React.createElement(
-                'div',
+                "div",
                 {
                   key: lineID,
                   onClick: function onClick(e) {
                     return _this2.context.linesActions.selectLine(layer.id, line.id);
-                  },
-                  style: line.selected ? elementSelectedStyle : elementStyle
+                  }
+                  // style={line.selected ? elementSelectedStyle : elementStyle}
+                  , style: elementSelectedStyle
                 },
                 line.name
               );
             })
           ) : null,
           this.state.matchedElements.holes.count() ? React.createElement(
-            'div',
+            "div",
             null,
             React.createElement(
-              'p',
+              "p",
               { style: categoryDividerStyle },
-              this.context.translator.t('Holes')
+              this.context.translator.t("Holes")
             ),
             this.state.matchedElements.holes.entrySeq().map(function (_ref3) {
               var _ref4 = _slicedToArray(_ref3, 2),
@@ -231,7 +256,7 @@ var PanelLayerElement = function (_Component) {
                   hole = _ref4[1];
 
               return React.createElement(
-                'div',
+                "div",
                 {
                   key: holeID,
                   onClick: function onClick(e) {
@@ -244,12 +269,12 @@ var PanelLayerElement = function (_Component) {
             })
           ) : null,
           this.state.matchedElements.items.count() ? React.createElement(
-            'div',
+            "div",
             null,
             React.createElement(
-              'p',
+              "p",
               { style: categoryDividerStyle },
-              this.context.translator.t('Items')
+              this.context.translator.t("Items")
             ),
             this.state.matchedElements.items.entrySeq().map(function (_ref5) {
               var _ref6 = _slicedToArray(_ref5, 2),
@@ -257,7 +282,7 @@ var PanelLayerElement = function (_Component) {
                   item = _ref6[1];
 
               return React.createElement(
-                'div',
+                "div",
                 {
                   key: itemID,
                   onClick: function onClick(e) {

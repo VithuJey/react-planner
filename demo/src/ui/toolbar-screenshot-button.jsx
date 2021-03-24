@@ -43,49 +43,36 @@ export default function ToolbarScreenshotButton({ mode }, { translator }) {
 
       const formData = new FormData();
       formData.append("file", new File([response.data], filename));
-      // formData.append("case", caseId);
-
-      // axios
-      //   .post(UPLOAD_URL, formData, {
-      //     headers: {
-      //       Authorization: `Bearer ${token}`,
-      //       "Content-Type": "multipart/form-data",
-      //     },
-      //   })
-      //   .then((res) => console.log(res))
-      //   .catch((e) => console.log(e));
-
-      // let headers = new Headers();
-      // headers.append("Content-Type", "multipart/form-data");
-      // headers.append("Accept", "multipart/form-data");
-      // headers.append("Authorization", `Bearer ${token}`);
-      // headers.append("Origin", "http://localhost:9000");
+      formData.append("case", caseId);
 
       console.log(formData);
 
       axios
         .post(UPLOAD_URL, formData, {
           headers: {
-            "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
           },
         })
-        .then((res) => console.log("res: ", res))
-        .catch((e) => console.log("error: ", e));
+        .then((res) => {
+          console.log("res: ", res);
+          alert("Met succes opgeslagen!");
+        })
+        .catch((e) => {
+          console.log("error: ", e);
+          alert("Opslaan mislukt. Probeer het opnieuw.");
+        });
 
-      // (async () => {
-      //   const rawResponse = await fetch(UPLOAD_URL, {
-      //     method: "POST",
-      //     headers: {
-      //       Accept: "application/json",
-      //       Authorization: `Bearer ${token}`,
-      //       "Content-Type": "multipart/form-data",
-      //     },
-      //     body: formData,
-      //   });
-      //   const content = await rawResponse.json();
-      //   console.log(content);
-      // })();
+      // const rawResponse = await fetch(UPLOAD_URL, {
+      //   method: "POST",
+      //   headers: {
+      //     Accept: "application/json",
+      //     Authorization: `Bearer ${token}`,
+      //     "Content-Type": "multipart/form-data",
+      //   },
+      //   body: formData,
+      // });
+      // console.log(rawResponse.json());
     });
   };
 

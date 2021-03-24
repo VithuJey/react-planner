@@ -22,8 +22,8 @@ const { Sidebar } = SidebarComponents;
 const { FooterBar } = FooterBarComponents;
 
 const toolbarW = 50;
-// const sidebarW = 300;
-const sidebarW = 0;
+const sidebarW = 200;
+// const sidebarW = 0;
 // const footerBarH = 20;
 const footerBarH = 0;
 
@@ -89,13 +89,13 @@ class ReactPlanner extends Component {
           {...props}
           onWheel={(event) => event.preventDefault()}
         />
-        {/* <Sidebar
+        <Sidebar
           width={sidebarW}
           height={sidebarH}
           state={extractedState}
           {...props}
         />
-        <FooterBar
+        {/* <FooterBar
           width={width}
           height={footerBarH}
           state={extractedState}
