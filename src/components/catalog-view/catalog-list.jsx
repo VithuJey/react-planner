@@ -242,13 +242,13 @@ export default class CatalogList extends Component {
                   }
                 }),
                 elementsToDisplay.map((elem) => {
-                  console.log(elem.name);
+                  // console.log(elem.name);
                   if (catalogItems.includes(elem.name))
                     return <CatalogItem key={elem.name} element={elem} />;
                 }),
               ]
             : this.state.matchedElements.map((elem) => {
-                console.log(elem.name);
+                // console.log(elem.name);
                 if (catalogItems.includes(elem.name))
                   return <CatalogItem key={elem.name} element={elem} />;
               })}

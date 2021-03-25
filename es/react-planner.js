@@ -30,7 +30,7 @@ var FooterBar = FooterBarComponents.FooterBar;
 
 
 var toolbarW = 50;
-var sidebarW = 300;
+var sidebarW = 200;
 // const sidebarW = 0;
 // const footerBarH = 20;
 var footerBarH = 0;
